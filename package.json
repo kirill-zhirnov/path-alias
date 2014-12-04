@@ -1,0 +1,31 @@
+{
+  "name": "path-alias",
+  "version": "0.0.1",
+  "description": "path-alias\r ==========",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kirill-zhirnov/path-alias.git"
+  },
+  "author": "Kirill Zhirnov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kirill-zhirnov/path-alias/issues"
+  },
+  "homepage": "https://github.com/kirill-zhirnov/path-alias",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-coffee": "^0.12.0",
+    "load-grunt-tasks": "^1.0.0",
+    "mocha": "^2.0.1",
+    "sinon": "^1.12.1"
+  },
+  "dependencies": {
+    "callsites": "^1.0.0"
+  }
+}
