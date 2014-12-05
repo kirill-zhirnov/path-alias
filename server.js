@@ -10,6 +10,7 @@ var exportMethods = [
 	'setAlias',
 	'setAliases',
 	'getAliases',
+	'hasAlias',
 	'getRoot',
 	'setRoot',
 	'resolve',
