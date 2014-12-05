@@ -1,5 +1,5 @@
 assert = require('chai').assert
-PathAlias = require '../src/client.coffee'
+PathAlias = require '../src/pathAliasClient.coffee'
 
 describe 'PathAlias for client side', ->
 	it 'should replace aliases in alias', ->

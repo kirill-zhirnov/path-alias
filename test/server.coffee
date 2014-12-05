@@ -1,5 +1,5 @@
 assert = require('chai').assert
-PathAlias = require '../src/server.coffee'
+PathAlias = require '../src/pathAliasServer.coffee'
 sinon = require 'sinon'
 path = require 'path'
 
