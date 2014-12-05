@@ -44,6 +44,17 @@ var someModule = pathAlias('app/myModule');
 ```
 
 ## Methods
+### Calling with argument - will resolve path, require it and return a module.
+``` node
+var pathAlias = require('path-alias');
+
+//with aliases
+var myModel = pathAlias('@user/models/myModel');
+
+//just add root prefix
+var anotherModel = pathAlias('app/modules/myModule');
+```
+
 ### getRoot()/setRoot()
 ``` node
 var pathAlias = require('path-alias');
@@ -63,3 +74,31 @@ pathAlias.setRoot('/you/custom/path')
 pathAlias.setAlias('alias', 'path or suffix', resolve);
 ```
 
+resolve - should path be resolved or not. True by default.
+
+**How does it work?**
+
+* './path/' - path, related to caller location will be transformed to absolute
+* 'some/path' - root path will be added to non absolute path
+
+If you want to add file suffix you will not want to resolve this alias:
+``` node
+pathAlias.setAlias('c', 'client-suffix', false);
+```
+
+**setAliases/getAliases**
+``` node
+pathAlias.setAliases({
+	'user' : 'app/packages/user'
+});
+```
+
+### resolve
+Resolve path and return it:
+
+``` node
+var path = pathAlias.resolve('@user/models/myModel');
+```
+
+### exportAliasesForClientSide
+It needs to export aliases for client-side module.
