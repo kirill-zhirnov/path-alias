@@ -1,9 +1,9 @@
 assert = require('chai').assert
-PathAlias = require '../src/alias.coffee'
+PathAlias = require '../src/server.coffee'
 sinon = require 'sinon'
 path = require 'path'
 
-describe 'PathAlias', ->
+describe 'PathAlias for server side', ->
 	it 'should cut node_modules from path', ->
 		p = new PathAlias
 
@@ -98,7 +98,7 @@ describe 'PathAlias', ->
 
 #		path related to root
 		assert.equal p.resolvePath('.gitignore'), "#{parent}/.gitignore"
-		assert.equal p.resolvePath('test/alias.coffee'), __filename
+		assert.equal p.resolvePath('test/server.coffee'), __filename
 
 	it 'should resolve path by set aliases', ->
 		p = new PathAlias
@@ -120,3 +120,20 @@ describe 'PathAlias', ->
 
 #		resolve relative path and replace aliases
 		assert.equal p.resolve('./some.@c'), "#{__dirname}/some.client-side"
+
+	it 'should export aliases for client', ->
+		p = new PathAlias
+
+		p.setAliases {
+			src: 'src'
+			lib: '../lib'
+			c: 'client-side',
+			callsites : '../node_modules/callsites/index'
+		}
+
+		assert.deepEqual p.exportAliasesForClientSide(), {
+			src: 'src'
+			lib: 'lib'
+			c: 'client-side',
+			callsites : 'node_modules/callsites/index'
+		}

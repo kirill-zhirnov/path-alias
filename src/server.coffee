@@ -2,8 +2,9 @@ path = require 'path'
 fs = require 'fs'
 callsites = require 'callsites'
 
-class PathAlias
-	constructor: (@root = null, @aliases = {}) ->
+class PathAliasServer
+	constructor: (@root = null) ->
+		@aliases = {}
 
 	resolve: (filePath) ->
 		regExp = new RegExp "@([a-z0-9\-]+)", "g"
@@ -37,6 +38,14 @@ class PathAlias
 
 	getAliases: ->
 		return @aliases
+
+	exportAliasesForClientSide : ->
+		out = {}
+
+		for alias, absPath of @aliases
+			out[alias] = absPath.replace "#{@getRoot()}/", ''
+
+		return out
 
 	validateAlias : (alias) ->
 		return /^[a-z0-9\-]+$/i.test(alias)
@@ -107,4 +116,4 @@ class PathAlias
 	getDirName: ->
 		return __dirname
 
-module.exports = PathAlias
+module.exports = PathAliasServer

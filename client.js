@@ -1,4 +1,4 @@
-var PathAlias = require('./lib/alias'),
+var PathAlias = require('./lib/client'),
 	pathAlias = new PathAlias()
 ;
 
@@ -7,11 +7,7 @@ module.exports = function(filePath) {
 }
 
 var exportMethods = [
-	'setAlias',
 	'setAliases',
-	'getAliases',
-	'getRoot',
-	'setRoot',
 	'resolve'
 ];
 

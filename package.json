@@ -2,7 +2,7 @@
   "name": "path-alias",
   "version": "0.0.1",
   "description": "path-alias\r ==========",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha"
   },
