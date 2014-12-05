@@ -74,8 +74,16 @@ class PathAliasServer
 		return regExp.test filePath
 
 	getCallerPath: ->
+		parent = path.dirname __dirname
+
+		ownScripts = [
+			__filename,
+			"#{parent}/server.js",
+			"#{parent}/client.js"
+		]
+
 		for obj in callsites()
-			if obj.getFileName() != __filename
+			if ownScripts.indexOf(obj.getFileName()) == -1
 				return obj.getFileName()
 
 	getRoot: ->

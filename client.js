@@ -1,4 +1,4 @@
-var PathAlias = require('./lib/client'),
+var PathAlias = require('./lib/pathAliasClient'),
 	pathAlias = new PathAlias()
 ;
 
