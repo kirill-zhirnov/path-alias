@@ -4,12 +4,12 @@ This module allows you to use path aliases in your NodeJS modules and client-sid
 
 ## The problem
 Probably In a big project you will have something like this:
-```
+``` node
 require('../../../packages/user/models/role') - relative paths
 ```
 
 Even if you use a root path detector:
-```
+``` node
 var pathFromRoot = require('some-module-to-detect-root')
 require(pathFromRoot('app/packages/user/models/role'))
 ```
