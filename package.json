@@ -1,7 +1,8 @@
 {
   "name": "path-alias",
   "version": "0.0.1",
-  "description": "path-alias\r ==========",
+  "description": "Path aliases, root path, module loader",
+  "keywords": ["path", "alias", "require", "root", "relative", "normalize"],
   "main": "server.js",
   "scripts": {
     "test": "mocha"
