@@ -10,7 +10,7 @@ class PathAliasServer
 		regExp = new RegExp "@([a-z0-9\-]+)", "g"
 
 		filePath = filePath.replace regExp, (varWithPref, varName, pos, fullStr) =>
-			if @aliases[varName]?
+			if @hasAlias(varName)
 				return @aliases[varName]
 
 			return varWithPref
@@ -38,6 +38,9 @@ class PathAliasServer
 
 	getAliases: ->
 		return @aliases
+
+	hasAlias: (alias) ->
+		return @aliases[alias]?
 
 	exportAliasesForClientSide : ->
 		out = {}

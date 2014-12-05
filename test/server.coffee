@@ -137,3 +137,13 @@ describe 'PathAlias for server side', ->
 			c: 'client-side',
 			callsites : 'node_modules/callsites/index'
 		}
+
+	it 'hasAlias should return true if exists', ->
+		p = new PathAlias
+
+		p.setAliases {
+			src: 'src'
+		}
+
+		assert.isTrue p.hasAlias('src')
+		assert.isFalse p.hasAlias('another')
