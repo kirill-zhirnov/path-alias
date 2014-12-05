@@ -108,9 +108,8 @@ Imagine, that you are building isomorphic javascript application, you have a mod
 
 For example, it would be:
 
-renderPage.js
-
-app/packages/user/widgets/showUserInfo.js
+* renderPage.js
+* app/packages/user/widgets/showUserInfo.js
 
 at server side script - bootstrap.js
 ``` node
