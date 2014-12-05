@@ -107,7 +107,9 @@ It needs to export aliases for client-side module.
 Imagine, that you are building isomorphic javascript application, you have a modules, which should be executed at server side and client-side:
 
 For example, it would be:
+
 renderPage.js
+
 app/packages/user/widgets/showUserInfo.js
 
 at server side script - bootstrap.js
