@@ -19,7 +19,7 @@ Imagine that you need to rename/move some file or directory, you need to change 
 
 ## How to solve it?
 Use path-alias!
-```
+``` node
 var pathAlias = require('path-alias');
 
 //setup alias:
@@ -30,11 +30,36 @@ var role = pathAlias('@user/models/role');
 ```
 
 You can also use variables in any parts:
-```
+``` node
 pathAlias.setAlias('c', 'client-side', false);
 
-// will require file: app/packages/user/models/some.client-side
+// will require file: app/packages/user/models/some.client-side.js
 var clientModel = pathAlias('@user/models/some.@c');
 ```
 
 Also you can use this module to require root-related files:
+``` node
+// will require {PROJECT_ROOT}/app/myModule
+var someModule = pathAlias('app/myModule');
+```
+
+## Methods
+### getRoot()/setRoot()
+``` node
+var pathAlias = require('path-alias');
+//root path will be detected
+console.log(pathAlias.getRoot());
+```
+
+**The directory with package.json is considered a project's root directory.**
+
+You can also set custom root-path:
+``` node
+pathAlias.setRoot('/you/custom/path')
+```
+
+### setAlias/setAliases/getAliases
+``` node
+pathAlias.setAlias('alias', 'path or suffix', resolve);
+```
+

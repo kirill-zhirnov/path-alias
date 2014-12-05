@@ -93,6 +93,7 @@ class PathAliasServer
 		return @root
 
 	setRoot: (@root) ->
+		return @
 
 	detectRoot: ->
 		dirName = @cutNodeModules @getDirName()
