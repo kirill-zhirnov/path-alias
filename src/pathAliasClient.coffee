@@ -10,7 +10,7 @@ class PathAliasClient
 		return @
 
 	resolve: (filePath) ->
-		regExp = new RegExp "@([a-z0-9\-]+)", "g"
+		regExp = new RegExp "@([a-z0-9\-]+)", "gi"
 
 		filePath = filePath.replace regExp, (varWithPref, varName, pos, fullStr) =>
 			if @aliases[varName]?

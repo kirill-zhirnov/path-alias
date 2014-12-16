@@ -7,7 +7,7 @@ class PathAliasServer
 		@aliases = {}
 
 	resolve: (filePath) ->
-		regExp = new RegExp "@([a-z0-9\-]+)", "g"
+		regExp = new RegExp "@([a-z0-9\-]+)", "ig"
 
 		filePath = filePath.replace regExp, (varWithPref, varName, pos, fullStr) =>
 			if @hasAlias(varName)

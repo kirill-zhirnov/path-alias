@@ -109,13 +109,14 @@ describe 'PathAlias for server side', ->
 #		if alias is not set - return string without replacing, but adding root path
 		assert.equal p.resolve('@system/test/@c.gif'), "#{parent}/@system/test/@c.gif"
 
-		p.setAlias 'src', 'src'
+#		camel case should work
+		p.setAlias 'sRC', 'src'
 		p.setAlias 'lib', '../lib'
 		p.setAlias 'c', 'client-side', false
 
 #		replace root aliases
-		assert.equal p.resolve('@src/alias'), "#{parent}/src/alias"
-		assert.equal p.resolve('@src/alias.@c'), "#{parent}/src/alias.client-side"
+		assert.equal p.resolve('@sRC/alias'), "#{parent}/src/alias"
+		assert.equal p.resolve('@sRC/alias.@c'), "#{parent}/src/alias.client-side"
 		assert.equal p.resolve('@lib/alias'), "#{parent}/lib/alias"
 
 #		resolve relative path and replace aliases
