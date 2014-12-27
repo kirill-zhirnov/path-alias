@@ -14,7 +14,8 @@ var exportMethods = [
 	'getRoot',
 	'setRoot',
 	'resolve',
-	'exportAliasesForClientSide'
+	'exportAliasesForClientSide',
+	'getPathRelativeToRoot'
 ];
 
 for (var i = 0; i < exportMethods.length; i++) {

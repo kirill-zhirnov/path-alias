@@ -148,3 +148,13 @@ describe 'PathAlias for server side', ->
 
 		assert.isTrue p.hasAlias('src')
 		assert.isFalse p.hasAlias('another')
+
+	it 'getPathRelativeToRoot should return path without root prefix', ->
+		p = new PathAlias
+		p.setRoot '/some/root'
+
+#		also it should cut extension by default
+		assert.equal 'local/file.client', p.getPathRelativeToRoot('/some/root/local/file.client.coffee')
+
+#		should not cut extension
+		assert.equal 'local/file.coffee', p.getPathRelativeToRoot('/some/root/local/file.coffee', false)

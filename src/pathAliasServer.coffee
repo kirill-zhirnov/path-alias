@@ -98,6 +98,14 @@ class PathAliasServer
 	setRoot: (@root) ->
 		return @
 
+	getPathRelativeToRoot : (absolutePath, cutExtension = true) ->
+		out = absolutePath.replace "#{@getRoot()}/", ''
+
+		if cutExtension
+			out = out.replace /\.[^\.]+$/i, ''
+
+		return out
+
 	detectRoot: ->
 		dirName = @cutNodeModules @getDirName()
 
