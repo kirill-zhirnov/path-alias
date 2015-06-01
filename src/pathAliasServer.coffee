@@ -42,6 +42,11 @@ class PathAliasServer
 	hasAlias: (alias) ->
 		return @aliases[alias]?
 
+	reset : ->
+		@aliases = {}
+
+		return @
+
 	exportAliasesForClientSide : ->
 		out = {}
 

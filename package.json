@@ -1,6 +1,6 @@
 {
   "name": "path-alias",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Path aliases, root path, module loader",
   "keywords": ["path", "alias", "require", "root", "relative", "normalize"],
   "main": "server.js",
