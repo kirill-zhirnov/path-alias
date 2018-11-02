@@ -63,9 +63,9 @@ class PathAliasServer
 		return /^[a-z0-9\-]+$/i.test(alias)
 
 	resolvePath: (filePath) ->
-		return @resolveRelated filePath, @getCallerPath()
+		return @resolvePathRelated filePath, @getCallerPath()
 
-	resolveRelated: (filePath, callerPath) ->
+	resolvePathRelated: (filePath, callerPath) ->
 #		if path is absolute - return it
 		if @isAbsolutePath(filePath)
 			return filePath
@@ -84,7 +84,7 @@ class PathAliasServer
 
 #	if path is a relative to current location
 	isRelativePath: (filePath) ->
-		regExp = new RegExp "^\.{1,2}\\#{path.sep}"
+		regExp = new RegExp "^\\.{1,2}\\#{path.sep}"
 
 		return regExp.test filePath
 

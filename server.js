@@ -18,7 +18,8 @@ var exportMethods = [
 	'getPathRelativeToRoot',
     'reset',
 	'replaceAliases',
-	'resolveRelated'
+	'resolvePathRelated',
+	'isRelativePath'
 ];
 
 for (var i = 0; i < exportMethods.length; i++) {
