@@ -1,8 +1,15 @@
 {
   "name": "path-alias",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Path aliases, root path, module loader",
-  "keywords": ["path", "alias", "require", "root", "relative", "normalize"],
+  "keywords": [
+    "path",
+    "alias",
+    "require",
+    "root",
+    "relative",
+    "normalize"
+  ],
   "main": "server.js",
   "scripts": {
     "test": "mocha"
@@ -19,6 +26,7 @@
   "homepage": "https://github.com/kirill-zhirnov/path-alias",
   "devDependencies": {
     "chai": "^1.10.0",
+    "coffeescript": "^1.12.7",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-coffee": "^0.12.0",

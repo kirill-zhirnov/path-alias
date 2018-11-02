@@ -2,20 +2,24 @@ path = require 'path'
 fs = require 'fs'
 callsites = require 'callsites'
 
+replaceAliasesRegExp = new RegExp "@([a-z0-9\-]+)", "ig"
+
 class PathAliasServer
 	constructor: (@root = null) ->
 		@aliases = {}
 
 	resolve: (filePath) ->
-		regExp = new RegExp "@([a-z0-9\-]+)", "ig"
+		filePath = @replaceAliases filePath
+		return @resolvePath filePath
 
-		filePath = filePath.replace regExp, (varWithPref, varName, pos, fullStr) =>
+	replaceAliases: (filePath) ->
+		filePath = filePath.replace replaceAliasesRegExp, (varWithPref, varName, pos, fullStr) =>
 			if @hasAlias(varName)
 				return @aliases[varName]
 
 			return varWithPref
 
-		return @resolvePath filePath
+		return filePath
 
 	setAliases : (aliases, resolve = true) ->
 		for alias, value of aliases
@@ -59,13 +63,16 @@ class PathAliasServer
 		return /^[a-z0-9\-]+$/i.test(alias)
 
 	resolvePath: (filePath) ->
+		return @resolveRelated filePath, @getCallerPath()
+
+	resolveRelated: (filePath, callerPath) ->
 #		if path is absolute - return it
 		if @isAbsolutePath(filePath)
 			return filePath
 
 		if @isRelativePath(filePath)
 #			relative path from caller location
-			filePath = path.resolve path.dirname(@getCallerPath()), filePath
+			filePath = path.resolve path.dirname(callerPath), filePath
 		else
 #			path related to root
 			filePath = path.resolve @getRoot(), filePath
