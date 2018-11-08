@@ -16,7 +16,7 @@ module.exports = function(content, map, meta) {
 		let modulePath = pathAlias.replaceAliases(args[2]);
 		modulePath = pathAlias.resolvePathRelated(modulePath, this.resourcePath);
 
-		return `require('${modulePath}');`
+		return `require('${modulePath}')`
 	});
 
 	return content;
