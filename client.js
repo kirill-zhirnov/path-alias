@@ -1,10 +1,17 @@
 var PathAlias = require('./lib/pathAliasClient'),
-	pathAlias = new PathAlias()
+	pathAlias = new PathAlias(),
+	requireCallback = null
 ;
 
 module.exports = function(filePath) {
-	return require(pathAlias.resolve(filePath));
+	var resolved = pathAlias.resolve(filePath);
+
+	return requireCallback.call(this, filePath, resolved);
 }
+
+module.exports.setRequireCallback = function(callback) {
+	requireCallback = callback;
+};
 
 var exportMethods = [
 	'setAliases',

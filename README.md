@@ -104,43 +104,53 @@ var path = pathAlias.resolve('@user/models/myModel');
 It needs to export aliases for client-side module.
 
 ## Using client-side
-Imagine, that you are building isomorphic javascript application, you have a modules, which should be executed at server side and client-side:
 
-For example, it would be:
+1. Add pathAlias loader to your webpack config. It replaces all `pathAlias('@some/path.@c')` entries to
+`require('/resolved/some/path.client')`. Path will be resolved before passing it to `require()`.
 
-* renderPage.js
-* app/packages/user/widgets/showUserInfo.js
-
-at server side script - bootstrap.js
-``` node
-//in a server-side bootstrap
-var pathAlias = require('path-alias');
-pathAlias.setAlias('user', 'app/packages/user');
-```
-
-in another file, for example: renderPage.js
-``` node
-//using it in another file
-var pathAlias = require('path-alias');
-var widget = pathAlias('@user/widgets/showUserInfo');
-```
-
-To make it work also at client side - export client.js to client side. I use [LMD](http://lmdjs.org/) fot this:
-
-In lmd config - add it in modules section:
-``` node
-{
-	'./lib/pathAliasClient' : 'node_modules/path-alias/lib/client.js'
-	'path-alias' : 'node_modules/path-alias/client.js'
+```node
+const aliasLoader = {
+	loader: path.resolve('path-alias/webpack/loader'),
+	options: {
+		test: (filePath) => {
+			//some custom logick to include/exclude files from loader.
+		},
+	}
 }
-```
-Export your aliases:
-``` node
-var aliases = pathAlias.exportAliasesForClientSide();
+
 ```
 
-In you client-side bootstrap:
-``` node
-var pathAlias = require('path-alias');
-pathAlias.setAliases(aliases);
+2. In your client side, if you want to use `pathAlias` for dynamic require, you need to pass require.context to pathAlias:
+
+```node
+const contextRequire = require.context('./app', true, /widgets\/[^\/]+\.client\.(js|coffee)$/i);
+const pathAlias = require('path-alias');
+
+pathAlias.setAliases({
+	'c': 'client',
+	'widgets': './widgets'
+});
+
+pathAlias.setRequireCallback((filePath, resolved) => {
+	if (!/\.(js|coffee)$/i.test(resolved)) {
+		let foundExt = null;
+		let found = contextRequire.keys().find((item) => {
+			if (`${resolved}.js` == item) {
+				foundExt = 'js';
+				return true;
+			}
+
+			if (`${resolved}.coffee` == item) {
+				foundExt = 'coffee';
+				return true;
+			}
+		});
+
+		if (found)
+			resolved += `.${foundExt}`;
+	}
+
+	return contextRequire(resolved);
+});
+
 ```

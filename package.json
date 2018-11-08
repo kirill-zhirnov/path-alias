@@ -1,6 +1,6 @@
 {
   "name": "path-alias",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Path aliases, root path, module loader",
   "keywords": [
     "path",
@@ -11,6 +11,7 @@
     "normalize"
   ],
   "main": "server.js",
+  "browser": "client.js",
   "scripts": {
     "test": "mocha"
   },
@@ -32,7 +33,8 @@
     "grunt-contrib-coffee": "^0.12.0",
     "load-grunt-tasks": "^1.0.0",
     "mocha": "^2.0.1",
-    "sinon": "^1.12.1"
+    "sinon": "^1.12.1",
+    "underscore": "^1.9.1"
   },
   "dependencies": {
     "callsites": "^1.0.0"
