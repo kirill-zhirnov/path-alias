@@ -110,7 +110,7 @@ It needs to export aliases for client-side module.
 
 ```node
 const aliasLoader = {
-	loader: path.resolve('path-alias/webpack/loader'),
+	loader: path.resolve('node_modules/path-alias/webpack/loader.js'),
 	options: {
 		test: (filePath) => {
 			//some custom logick to include/exclude files from loader.
